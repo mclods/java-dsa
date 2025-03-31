@@ -36,6 +36,3 @@ build/
 
 ### Mac OS ###
 .DS_Store
-
-### No changes to main method ###
-src/main/java/org/mclods/Main.java
