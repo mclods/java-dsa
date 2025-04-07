@@ -15,13 +15,13 @@ public class Drought {
         n = Integer.parseInt(input[0]);
         c = Integer.parseInt(input[1]);
 
-        ArrayList<Integer> rainFallLevel = new ArrayList<>();
+        ArrayList<Integer> rainFallLevels = new ArrayList<>();
         for(int i=0; i<n; ++i) {
-            rainFallLevel.add(Integer.parseInt(br.readLine()));
+            rainFallLevels.add(Integer.parseInt(br.readLine()));
         }
 
         for(int i=0; i<n; ++i) {
-            totalRainfall += rainFallLevel.get(i);
+            totalRainfall += rainFallLevels.get(i);
 
             if(totalRainfall >= c) {
                 System.out.println(i + 1);
