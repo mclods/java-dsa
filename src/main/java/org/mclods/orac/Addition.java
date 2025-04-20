@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 // https://orac.amt.edu.au/problem/332/
 public class Addition {
-    public static void sol() {
+    public static void solution() {
         int a, b, sum;
         Scanner sc = new Scanner(System.in);
 

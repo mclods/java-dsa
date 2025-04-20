@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 // https://orac.amt.edu.au/problem/331/
 public class TremendousTakTakTree {
-    public static void sol() throws IOException {
+    public static void solution() throws IOException {
         int initialFruits, numFullMoons = 0;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 

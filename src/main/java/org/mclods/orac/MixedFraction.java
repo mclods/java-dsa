@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 // https://orac.amt.edu.au/problem/329/
 public class MixedFraction {
-    public static void sol() {
+    public static void solution() {
         int n, d, a, b;
         Scanner sc = new Scanner(System.in);
 

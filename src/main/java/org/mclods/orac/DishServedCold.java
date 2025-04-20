@@ -8,7 +8,7 @@ import java.util.Collections;
 
 // https://orac.amt.edu.au/problem/328/
 public class DishServedCold {
-    public static void sol() throws IOException {
+    public static void solution() throws IOException {
         int n, min, max, sum = 0, avg;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
