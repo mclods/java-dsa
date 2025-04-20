@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 // https://orac.amt.edu.au/problem/330/
 public class SittingStanding {
-    public static void sol() {
+    public static void solution() {
         int r, s, totalPeople, totalSeats, peopleSitting, peopleStanding;
         Scanner sc = new Scanner(System.in);
 

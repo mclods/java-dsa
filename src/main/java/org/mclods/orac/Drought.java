@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 // https://orac.amt.edu.au/problem/340/
 public class Drought {
-    public static void sol() throws IOException {
+    public static void solution() throws IOException {
         int n, c, totalRainfall = 0;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 

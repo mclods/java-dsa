@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 // https://orac.amt.edu.au/problem/324/
 public class CountInfinity {
-    public static void sol() throws IOException {
+    public static void solution() throws IOException {
         int n;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
