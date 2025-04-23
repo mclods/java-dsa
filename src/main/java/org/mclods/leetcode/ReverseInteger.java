@@ -7,52 +7,36 @@ import java.io.InputStreamReader;
 // https://leetcode.com/problems/reverse-integer/description/
 public class ReverseInteger {
     public int reverse(int n) {
-        char[] inputNumber = String.valueOf(n).toCharArray();
-        boolean isNegative = inputNumber[0] == '-', isStarting = true;
+        boolean isNegative = n < 0;
 
-        long outputNumber = 0;
+        if(n == Integer.MIN_VALUE) {
+            return 0;
+        }
 
-        if(isNegative) {
-            for(int i = inputNumber.length-1; i>0; --i) {
-                if(isStarting && inputNumber[i] != '0') {
-                    isStarting = false;
-                }
+        int absN = Math.abs(n), output = 0;
 
-                if(isStarting && inputNumber[i] == '0') {
-                    continue;
-                }
+        while(absN >= 10) {
+            output = output * 10 + (absN % 10);
+            absN /= 10;
+        }
 
-                long digit =  (long)((inputNumber[i] - 48) * Math.pow(10, i-1));
-                outputNumber += digit;
-
-                if(outputNumber > Integer.MAX_VALUE) {
-                    outputNumber = 0;
-                    break;
-                }
-            }
-
-            outputNumber *= -1;
-        } else {
-            for(int i = inputNumber.length-1; i>=0; --i) {
-                if(isStarting && inputNumber[i] != '0') {
-                    isStarting = false;
-                }
-
-                if(isStarting && inputNumber[i] == '0') {
-                    continue;
-                }
-
-                long digit =  (long)((inputNumber[i] - 48) * Math.pow(10, i));
-                outputNumber += digit;
-
-                if(outputNumber > Integer.MAX_VALUE) {
-                    outputNumber = 0;
-                    break;
-                }
+        if(output > 214748364) {
+            return 0;
+        } else if(output == 214748364) {
+            if(isNegative && absN > 8) {
+                return 0;
+            } else if(!isNegative && absN > 7) {
+                return 0;
             }
         }
 
-        return (int)outputNumber;
+        output = output * 10 + absN;
+
+        if(isNegative) {
+            output *= -1;
+        }
+
+        return output;
     }
 
     public static void solution() throws IOException {
