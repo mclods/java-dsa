@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+// https://leetcode.com/problems/zigzag-conversion/description/
 public class ZigZagConvert {
     public String convert(String input, int numRows) {
         if(numRows == 1) {
