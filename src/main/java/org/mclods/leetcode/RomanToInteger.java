@@ -22,6 +22,7 @@ public class RomanToInteger {
                     ++i;
                     break;
                 case 'C':
+                    // C can only come before D and M as 400 or 900, all other cases adds 100
                     if(i < romanNumeral.length() - 1) {
                         if(romanNumeral.charAt(i + 1) == 'D') {
                             numberOutput += 400;
@@ -43,6 +44,7 @@ public class RomanToInteger {
                     ++i;
                     break;
                 case 'X':
+                    // X can only come before L or C as 40 or 90, all other cases adds 10
                     if(i < romanNumeral.length() - 1) {
                         if(romanNumeral.charAt(i + 1) == 'L') {
                             numberOutput += 40;
@@ -64,6 +66,7 @@ public class RomanToInteger {
                     ++i;
                     break;
                 case 'I':
+                    // I can only come before V or X as 4 or 9, all other cases adds 1
                     if(i < romanNumeral.length() - 1) {
                         if(romanNumeral.charAt(i + 1) == 'V') {
                             numberOutput += 4;
