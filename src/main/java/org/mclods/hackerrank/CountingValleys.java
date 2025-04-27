@@ -13,18 +13,19 @@ public class CountingValleys {
         n = Integer.parseInt(br.readLine());
         String[] paths = br.readLine().split("");
 
-        int altLevel = 0, valleys = 0;
+        int altitudeLevel = 0, valleys = 0;
 
         for(String i : paths) {
-            int currentLevel = altLevel;
+            int currentLevel = altitudeLevel;
 
             if(i.equals("U")) {
-                altLevel++;
+                altitudeLevel++;
             } else {
-                altLevel--;
+                altitudeLevel--;
             }
 
-            if(altLevel < 0 && currentLevel == 0) {
+            // a valley starts when altitude goes from 0 to -1
+            if(altitudeLevel < 0 && currentLevel == 0) {
                 valleys++;
             }
         }

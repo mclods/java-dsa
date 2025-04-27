@@ -17,6 +17,7 @@ public class JumpingOnClouds {
         int i=0, jumps = 0;
         while(i < n-1) {
             if(clouds[i].equals("0")) {
+                // one jump can be reduced if 2 safe clouds occur consecutively
                 if(i < n-2 && clouds[i+1].equals("0") && clouds[i+2].equals("0")) {
                     jumps++;
                     i += 2;
