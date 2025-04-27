@@ -59,6 +59,7 @@ public class IntegerToRoman {
     public String intToRoman(int number) {
         StringBuilder romanNumeral = new StringBuilder();
 
+        // Parse number from end and keep adding roman numeral as prefix
         int decimalPlace = 0;
         while(number > 0) {
             int digit = number % 10;

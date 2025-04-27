@@ -16,9 +16,12 @@ public class Palindrome {
         while(numCopy > 0) {
             int lastDigit = numCopy % 10;
 
+            // reversedNumber will exceed integer limit, no need to reverse it further
             if(reversedNumber > 214748364) {
                 break;
-            } else if(reversedNumber == 214748364 && lastDigit > 7) {
+            }
+            // reversedNumber will exceed integer limit, no need to reverse it further
+            else if(reversedNumber == 214748364 && lastDigit > 7) {
                 break;
             } else {
                 reversedNumber = reversedNumber * 10 + lastDigit;
