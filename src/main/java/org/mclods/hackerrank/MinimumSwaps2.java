@@ -22,9 +22,12 @@ public class MinimumSwaps2 {
 
         int minSwaps = 0;
         for(int i=0; i<n;) {
+            // element already in correct position
             if(minNumber + i == numberInputs[i]) {
                 ++i;
             } else {
+                /* swap the element to its correct index
+                continue this process until the current index has correct element */
                 int indexToSwap = numberInputs[i] - minNumber;
                 boolean shouldIncrementIndex = numberInputs[indexToSwap] == minNumber + i;
 

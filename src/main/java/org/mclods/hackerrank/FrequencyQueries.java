@@ -47,6 +47,9 @@ public class FrequencyQueries {
 
         int q = Integer.parseInt(br.readLine());
         HashMap<Integer, Integer> dataMap = new HashMap<>();
+
+        /* maintaining a map whose keys are element frequencies and values are elements set
+        helps in faster retrieval of frequency data */
         HashMap<Integer, HashSet<Integer>> frequencyMap = new HashMap<>();
         ArrayList<Integer> outputs = new ArrayList<>();
 
