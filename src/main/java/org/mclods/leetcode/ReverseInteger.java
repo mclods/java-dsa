@@ -15,22 +15,28 @@ public class ReverseInteger {
 
         int absN = Math.abs(n), output = 0;
 
-        while(absN >= 10) {
-            output = output * 10 + (absN % 10);
+        while(absN > 0) {
+            int digit = absN % 10;
+
+            // integer will exceed limits stop parsing
+            if(output > 214748364) {
+                output = 0;
+                break;
+            }
+            // integer will exceed limits stop parsing
+            else if(output == 214748364) {
+                if(isNegative && digit > 8) {
+                    output = 0;
+                    break;
+                } else if(!isNegative && digit > 7) {
+                    output = 0;
+                    break;
+                }
+            }
+
+            output = output * 10 + digit;
             absN /= 10;
         }
-
-        if(output > 214748364) {
-            return 0;
-        } else if(output == 214748364) {
-            if(isNegative && absN > 8) {
-                return 0;
-            } else if(!isNegative && absN > 7) {
-                return 0;
-            }
-        }
-
-        output = output * 10 + absN;
 
         if(isNegative) {
             output *= -1;
