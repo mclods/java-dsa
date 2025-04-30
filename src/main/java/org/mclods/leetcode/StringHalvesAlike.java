@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+// https://leetcode.com/problems/determine-if-string-halves-are-alike/description/
 public class StringHalvesAlike {
     private static int vowelCount(char input) {
         return switch (input) {
