@@ -65,6 +65,7 @@ public class MergeTwoSortedLists {
         } else{
             ListNode list1CurrentNode = list1, list2CurrentNode = list2, mergedListCurrentNode;
 
+            // Assign head node of mergedList first then start parsing
             if(list1CurrentNode.val < list2CurrentNode.val) {
                 mergedList = mergedListCurrentNode = list1CurrentNode;
                 list1CurrentNode = list1CurrentNode.next;
