@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+// https://leetcode.com/problems/minimum-equal-sum-of-two-arrays-after-replacing-zeros/description/
 public class MinEqualArraySumReplacingZeroes {
     public long minSum(int[] numArr1, int[] numArr2) {
         long numArr1Sum = 0, numArr2Sum = 0, numArr1ZeroesCount = 0, numArr2ZeroesCount = 0;
