@@ -9,9 +9,11 @@ public class CountSubMatricesWithEqualFrequency {
     public int numberOfSubmatrices(char[][] grid) {
         int subMatricesCount = 0, rowSize = grid.length, colSize = grid[0].length;
 
+        // Matrices for maintaining number of X and Y characters encountered
         int[][] xCounts = new int[rowSize][colSize];
         int[][] yCounts = new int[rowSize][colSize];
 
+        // Fill index (0, 0)
         switch (grid[0][0]) {
             case 'X':
                 xCounts[0][0]++;
@@ -21,6 +23,7 @@ public class CountSubMatricesWithEqualFrequency {
                 break;
         }
 
+        // Fill first row
         for(int i=1; i<colSize; ++i) {
             xCounts[0][i] = xCounts[0][i-1];
             yCounts[0][i] = yCounts[0][i-1];
@@ -39,6 +42,7 @@ public class CountSubMatricesWithEqualFrequency {
             }
         }
 
+        // Fill first column
         for(int i=1; i<rowSize; ++i) {
             xCounts[i][0] = xCounts[i-1][0];
             yCounts[i][0] = yCounts[i-1][0];
@@ -57,8 +61,12 @@ public class CountSubMatricesWithEqualFrequency {
             }
         }
 
+        // Fill remaining places
         for(int i=1; i<rowSize; ++i) {
             for(int j=1; j<colSize; ++j) {
+
+                // Count of index ([i-1], [j-1]) should be subtracted as it is common count for both
+                // indexes ([i], [j-1]) and ([i-1], [j])
                 xCounts[i][j] = xCounts[i][j-1] + xCounts[i-1][j] - xCounts[i-1][j-1];
                 yCounts[i][j] = yCounts[i][j-1] + yCounts[i-1][j] - yCounts[i-1][j-1];
 
