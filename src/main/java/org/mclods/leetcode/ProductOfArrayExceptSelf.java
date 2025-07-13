@@ -8,7 +8,11 @@ import java.io.InputStreamReader;
 public class ProductOfArrayExceptSelf {
     public int[] productExceptSelf(int[] nums) {
         int n = nums.length;
-        int[] forwardProduct = new int[n], backwardProduct = new int[n], productExceptSelfArr = new int[n];
+        // forwardProduct[i] contains products of all numbers from 0 to i
+        int[] forwardProduct = new int[n],
+                // backwardProduct[i] contains products of all numbers from n-1 to i
+                backwardProduct = new int[n],
+                productExceptSelfArr = new int[n];
 
         forwardProduct[0] = nums[0];
         for(int i=1; i<n; ++i) {
