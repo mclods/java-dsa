@@ -4,48 +4,62 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 
 // https://leetcode.com/problems/top-k-frequent-elements/
 public class TopKFrequentElements {
+    public void updateCountNumsMap(HashMap<Integer, HashSet<Integer>> map,
+                                   int prevCount,
+                                   int numsIndex) {
+        // Remove numsIndex from prevCount key in map
+        if(map.containsKey(prevCount)) {
+            HashSet<Integer> prevNumsIndexes = map.get(prevCount);
+            prevNumsIndexes.remove(numsIndex);
+            map.put(prevCount, prevNumsIndexes);
+        }
+
+        int newCount = prevCount + 1;
+
+        // Add numsIndex to newCount key in map
+        HashSet<Integer> numsIndexes;
+        if(map.containsKey(newCount)) {
+            numsIndexes = map.get(newCount);
+        } else {
+            numsIndexes = new HashSet<>();
+        }
+
+        numsIndexes.add(numsIndex);
+        map.put(newCount, numsIndexes);
+    }
+
     public int[] topKFrequent(int[] nums, int k) {
-        // numbers for maintaining list of all unique numbers
-        int[] numbers = new int[nums.length],
-                // numbersCount for maintaining count of each unique number
-                numbersCount = new int[nums.length];
-        int index = 0;
-        HashMap<Integer, Integer> numberIndexMap = new HashMap<>();
+        HashMap<Integer, Integer> numsCountMap = new HashMap<>();
+        HashMap<Integer, HashSet<Integer>> countNumsMap = new HashMap<>();
 
-        for (int number : nums) {
-            if(numberIndexMap.containsKey(number)) {
-                int numberIndex = numberIndexMap.get(number);
-                numbersCount[numberIndex]++;
-
-                // Place number in its proper place so that numbersCount[] is always in decreasing order
-                while(numberIndex > 0 && numbersCount[numberIndex] > numbersCount[numberIndex-1]) {
-                    // Swap and update numbers[], numbersCount[] and numberIndexMap
-                    int temp = numbers[numberIndex];
-                    numbers[numberIndex] = numbers[numberIndex-1];
-                    numbers[numberIndex-1] = temp;
-
-                    temp = numbersCount[numberIndex];
-                    numbersCount[numberIndex] = numbersCount[numberIndex-1];
-                    numbersCount[numberIndex-1] = temp;
-
-                    numberIndexMap.put(number, numberIndex-1);
-                    numberIndexMap.put(numbers[numberIndex], numberIndex);
-
-                    --numberIndex;
-                }
+        for(int i : nums) {
+            if(numsCountMap.containsKey(i)) {
+                updateCountNumsMap(countNumsMap, numsCountMap.get(i), i);
+                numsCountMap.put(i, numsCountMap.get(i) + 1);
             } else {
-                numbers[index] = number;
-                numbersCount[index]++;
-                numberIndexMap.put(number, index);
-                ++index;
+                updateCountNumsMap(countNumsMap, 0, i);
+                numsCountMap.put(i, 1);
             }
         }
 
+        int index = 0;
         int[] topKFrequentNums = new int[k];
-        System.arraycopy(numbers, 0, topKFrequentNums, 0, k);
+        for(int i=nums.length; i>0 && k>0; --i) {
+            if(!countNumsMap.containsKey(i)) {
+                continue;
+            }
+
+            HashSet<Integer> numsIndexes = countNumsMap.get(i);
+            Iterator<Integer> itr = numsIndexes.iterator();
+            while(itr.hasNext() && k-- > 0) {
+                topKFrequentNums[index++] = itr.next();
+            }
+        }
 
         return topKFrequentNums;
     }
