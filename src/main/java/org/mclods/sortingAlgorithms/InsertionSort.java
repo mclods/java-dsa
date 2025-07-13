@@ -13,7 +13,7 @@ public class InsertionSort {
             int j = i-1;
 
             // We consider the part of array from 0 to j as sorted one and insert element at index i (or key)
-            // in it's correct position in the sorted array
+            // in its correct position in the sorted array
             while(j >= 0 && arr[j] > key) {
                 arr[j+1] = arr[j];
                 j--;
