@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 // https://leetcode.com/problems/two-sum/description/
-public class FindTwoSum {
+public class Find2Sum {
     public int[] twoSum(int[] nums, int target) {
         int[] output = new int[2];
         output[0] = output[1] = -1;
@@ -40,7 +40,7 @@ public class FindTwoSum {
 
         int target = Integer.parseInt(br.readLine());
 
-        int[] output = new FindTwoSum().twoSum(nums, target);
+        int[] output = new Find2Sum().twoSum(nums, target);
         for (int i : output) {
             System.out.print(i + " ");
         }
