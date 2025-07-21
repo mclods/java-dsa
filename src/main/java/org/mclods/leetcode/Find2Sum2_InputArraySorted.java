@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
-public class FindTwoSum2InputArraySorted {
+public class Find2Sum2_InputArraySorted {
     public int[] twoSum(int[] numbers, int target) {
         int i=0, j=numbers.length-1;
 
@@ -35,7 +35,7 @@ public class FindTwoSum2InputArraySorted {
 
         int target = Integer.parseInt(br.readLine());
 
-        int[] output = new FindTwoSum2InputArraySorted().twoSum(numbers, target);
+        int[] output = new Find2Sum2_InputArraySorted().twoSum(numbers, target);
         for(int i : output) {
             System.out.print(i + " ");
         }
