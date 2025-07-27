@@ -7,6 +7,9 @@ import java.io.InputStreamReader;
 // https://leetcode.com/problems/trapping-rain-water/description/
 public class TrappingRainwater {
     public int trap(int[] heights) {
+        /*
+         * Water trapped in a gap i is always equal to the min of the left max height and right max height
+         * minus the height of the gap itself */
         int n = heights.length;
         int[] leftMax = new int[n],
                 rightMax = new int[n];
