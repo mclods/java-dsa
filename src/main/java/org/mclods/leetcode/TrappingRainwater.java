@@ -7,30 +7,31 @@ import java.io.InputStreamReader;
 // https://leetcode.com/problems/trapping-rain-water/description/
 public class TrappingRainwater {
     public int trap(int[] heights) {
-        int i=0, j=heights.length-1,
-                leftHeight = heights[i], rightHeight = heights[j],
-                currentHeight = Math.min(leftHeight, rightHeight),
-                waterTrapped = currentHeight * (j - i - 1);
+        int n = heights.length;
+        int[] leftMax = new int[n],
+                rightMax = new int[n];
 
-        while(++i < --j) {
-            waterTrapped -= currentHeight * (j - i - 1);
-
-            if(heights[i] > leftHeight) {
-                leftHeight = heights[i];
-                waterTrapped -= currentHeight;
+        int leftMaxValue = leftMax[0] = heights[0];
+        for(int i=1; i<n; ++i) {
+            if(heights[i] > leftMaxValue) {
+                leftMaxValue = leftMax[i] = heights[i];
             } else {
-                waterTrapped -= heights[i];
+                leftMax[i] = leftMaxValue;
             }
+        }
 
-            if(heights[j] > rightHeight) {
-                rightHeight = heights[j];
-                waterTrapped -= currentHeight;
+        int rightMaxValue = rightMax[n-1] = heights[n-1];
+        for(int i=n-2; i>=0; --i) {
+            if(heights[i] > rightMaxValue) {
+                rightMaxValue = rightMax[i] = heights[i];
             } else {
-                waterTrapped -= heights[j];
+                rightMax[i] = rightMaxValue;
             }
+        }
 
-            currentHeight = Math.min(leftHeight, rightHeight);
-            waterTrapped += currentHeight * (j - i - 1);
+        int waterTrapped = 0;
+        for(int i=1; i<n-1; ++i) {
+            waterTrapped += Math.min(leftMax[i], rightMax[i]) - heights[i];
         }
 
         return waterTrapped;
