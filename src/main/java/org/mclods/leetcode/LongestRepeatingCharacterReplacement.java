@@ -9,42 +9,65 @@ public class LongestRepeatingCharacterReplacement {
     public int characterReplacement(String input, int k) {
         int n = input.length();
 
-        if(n == 0 || n == 1) {
-            return n;
+        // Compute letter count of the input string
+        int[] letterCount = new int[26];
+        for(int i=0; i<n; ++i) {
+            letterCount[input.charAt(i) - 'A']++;
         }
 
-        int maxSubStrSize = 0, currentSubStrSize = 1, replacementCount = k, start = 0, end = 1;
-        char subStrLetter = input.charAt(0);
+        // Find the letter with the highest count
+        int maxCount = letterCount[0];
+        char mostPopularLetter = 'A';
+        for(int i=1; i<26; ++i) {
+            if(letterCount[i] > maxCount) {
+                maxCount = letterCount[i];
+                mostPopularLetter = (char)('A' + i);
+            }
+        }
 
-        while(end < n) {
-            char currentLetter = input.charAt(end);
+        int startIndex = 0, endIndex = 0,
+                subStrLen = 0, maxSubStrLen = 0,
+                replaceableCharCount = k;
+        while(endIndex < n) {
+            char letter = input.charAt(endIndex);
 
-            if(currentLetter == subStrLetter) {
-                currentSubStrSize++;
-                end++;
+            if(letter == mostPopularLetter) {
+                ++subStrLen;
+                ++endIndex;
             } else {
-                if(replacementCount > 0) {
-                    replacementCount--;
-                    currentSubStrSize++;
-                    end++;
+                if(replaceableCharCount > 0) {
+                    ++subStrLen;
+                    --replaceableCharCount;
+                    ++endIndex;
                 } else {
-                    while(input.charAt(start) == subStrLetter) {
-                        start++;
+                    // We have replaced k chars already, it's time to shift the window
+                    // We'll remove the letter at startIndex from the window
+                    if(subStrLen > 0) {
+                        --subStrLen;
                     }
 
-                    subStrLetter = input.charAt(start);
-                    replacementCount = k;
-                    currentSubStrSize = 1;
-                    end = start + 1;
+                    // If the letter at start index was replaced earlier
+                    if(input.charAt(startIndex) != mostPopularLetter && k != 0) {
+                        ++replaceableCharCount;
+                    }
+
+                    if(startIndex < endIndex) {
+                        // Window is shrunk and moved to right
+                        ++startIndex;
+                    } else {
+                        // Window cannot be shrunk anymore so entire window is moved to right
+                        ++startIndex;
+                        ++endIndex;
+                    }
                 }
             }
 
-            if(currentSubStrSize > maxSubStrSize) {
-                maxSubStrSize = currentSubStrSize;
+            if(subStrLen > maxSubStrLen) {
+                maxSubStrLen = subStrLen;
             }
         }
 
-        return maxSubStrSize;
+        return maxSubStrLen;
     }
 
     public static void solution() throws IOException {
