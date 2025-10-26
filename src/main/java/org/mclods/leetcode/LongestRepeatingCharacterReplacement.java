@@ -6,65 +6,53 @@ import java.io.InputStreamReader;
 
 // https://leetcode.com/problems/longest-repeating-character-replacement/description/
 public class LongestRepeatingCharacterReplacement {
-    public int characterReplacement(String input, int k) {
+    int getMax(int[] arr) {
+        int max = arr[0];
+
+        for(int i=1; i < arr.length; ++i) {
+            if(arr[i] > max) {
+                max = arr[i];
+            }
+        }
+
+        return max;
+    }
+
+    public int characterReplacement(String input, final int k) {
         int n = input.length();
 
-        // Compute letter count of the input string
-        int[] letterCount = new int[26];
-        for(int i=0; i<n; ++i) {
-            letterCount[input.charAt(i) - 'A']++;
-        }
+        int[] charFrequency = new int[26];
+        int start = 0, end = 0, maxSubStrLen = 0, maxCharFrequency = 0;
 
-        // Find the letter with the highest count
-        int maxCount = letterCount[0];
-        char mostPopularLetter = 'A';
-        for(int i=1; i<26; ++i) {
-            if(letterCount[i] > maxCount) {
-                maxCount = letterCount[i];
-                mostPopularLetter = (char)('A' + i);
+        while(end < n) {
+            char currentChar = input.charAt(end);
+            int currentCharIndex = currentChar - 'A';
+
+            charFrequency[currentCharIndex]++;
+
+            if(charFrequency[currentCharIndex] > maxCharFrequency) {
+                maxCharFrequency = charFrequency[currentCharIndex];
             }
-        }
 
-        int startIndex = 0, endIndex = 0,
-                subStrLen = 0, maxSubStrLen = 0,
-                replaceableCharCount = k;
-        while(endIndex < n) {
-            char letter = input.charAt(endIndex);
+            int windowLen = end - start + 1;
 
-            if(letter == mostPopularLetter) {
-                ++subStrLen;
-                ++endIndex;
-            } else {
-                if(replaceableCharCount > 0) {
-                    ++subStrLen;
-                    --replaceableCharCount;
-                    ++endIndex;
-                } else {
-                    // We have replaced k chars already, it's time to shift the window
-                    // We'll remove the letter at startIndex from the window
-                    if(subStrLen > 0) {
-                        --subStrLen;
-                    }
-
-                    // If the letter at start index was replaced earlier
-                    if(input.charAt(startIndex) != mostPopularLetter && k != 0) {
-                        ++replaceableCharCount;
-                    }
-
-                    if(startIndex < endIndex) {
-                        // Window is shrunk and moved to right
-                        ++startIndex;
-                    } else {
-                        // Window cannot be shrunk anymore so entire window is moved to right
-                        ++startIndex;
-                        ++endIndex;
-                    }
+            // Check if window is valid
+            if(windowLen - maxCharFrequency <= k) {
+                if(windowLen > maxSubStrLen) {
+                    maxSubStrLen = windowLen;
                 }
-            }
 
-            if(subStrLen > maxSubStrLen) {
-                maxSubStrLen = subStrLen;
+            } else {
+                // Move the window right. Don't shrink
+                char startingChar = input.charAt(start);
+                int startingCharIndex = startingChar - 'A';
+
+                charFrequency[startingCharIndex]--;
+
+                maxCharFrequency = getMax(charFrequency);
+                ++start;
             }
+            ++end;
         }
 
         return maxSubStrLen;
