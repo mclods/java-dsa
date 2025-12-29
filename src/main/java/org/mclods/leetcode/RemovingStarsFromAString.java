@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Iterator;
 
 // https://leetcode.com/problems/removing-stars-from-a-string
 public class RemovingStarsFromAString {
@@ -22,8 +23,10 @@ public class RemovingStarsFromAString {
         }
 
         StringBuilder sb = new StringBuilder();
-        while(!stack.isEmpty()) {
-            sb.append(stack.removeLast());
+
+        Iterator<Character> dItr = stack.descendingIterator();
+        while(dItr.hasNext()) {
+            sb.append(dItr.next());
         }
 
         return sb.toString();
