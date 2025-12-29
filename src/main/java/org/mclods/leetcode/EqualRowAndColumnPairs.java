@@ -17,7 +17,7 @@ public class EqualRowAndColumnPairs {
             StringBuilder sb = new StringBuilder();
 
             for(int j=0; j<n; ++j) {
-                sb.append(grid[i][j]).append("*");
+                sb.append(grid[i][j] + 1);
             }
 
             String key = sb.toString();
@@ -28,7 +28,7 @@ public class EqualRowAndColumnPairs {
             StringBuilder sb = new StringBuilder();
 
             for(int j=0; j<n; ++j) {
-                sb.append(grid[j][i]).append("*");
+                sb.append(grid[j][i] + 1);
             }
 
             String key = sb.toString();
