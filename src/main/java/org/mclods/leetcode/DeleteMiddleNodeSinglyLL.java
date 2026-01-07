@@ -40,6 +40,7 @@ public class DeleteMiddleNodeSinglyLL {
     }
 
     public ListNode deleteMiddle(ListNode head) {
+        // When linked list has only one node
         if(head != null && head.next == null) {
             return null;
         }
