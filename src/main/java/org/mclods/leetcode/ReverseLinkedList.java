@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-// https://leetcode.com/problems/odd-even-linked-list/description
-public class OddEvenLinkedList {
+// https://leetcode.com/problems/reverse-linked-list/description
+public class ReverseLinkedList {
     private static class ListNode {
         int val;
         ListNode next;
@@ -39,41 +39,24 @@ public class OddEvenLinkedList {
         System.out.println();
     }
 
-    private ListNode oddEvenList(ListNode head) {
-        int i = 1;
-        ListNode oddHead, oddEnd,
-                evenHead, evenEnd,
-                currentNode = head;
+    private ListNode reverseList(ListNode head) {
+        if(head == null) {
+            return null;
+        }
 
-        oddHead = oddEnd = evenHead = evenEnd = null;
+        ListNode prevNode = null, currentNode = head, nextNode = head.next;
 
         while(currentNode != null) {
-            if(i % 2 == 0) {
-                if(evenEnd != null) {
-                    evenEnd.next = currentNode;
-                    evenEnd = evenEnd.next;
-                } else {
-                    evenHead = evenEnd = currentNode;
-                }
-            } else {
-                if(oddEnd != null) {
-                    oddEnd.next = currentNode;
-                    oddEnd = oddEnd.next;
-                } else {
-                    oddHead = oddEnd = currentNode;
-                }
+            currentNode.next = prevNode;
+            prevNode = currentNode;
+            currentNode = nextNode;
+
+            if(nextNode != null) {
+                nextNode = nextNode.next;
             }
-
-            i++;
-            currentNode = currentNode.next;
         }
 
-        if(oddEnd != null && evenEnd != null) {
-            oddEnd.next = evenHead;
-            evenEnd.next = null;
-        }
-
-        return oddHead;
+        return prevNode;
     }
 
     public static void solution() throws IOException {
@@ -84,7 +67,7 @@ public class OddEvenLinkedList {
             return;
         }
 
-        OddEvenLinkedList ob = new OddEvenLinkedList();
+        ReverseLinkedList ob = new ReverseLinkedList();
 
         ListNode head = new ListNode(Integer.parseInt(inputs[0]));
 
@@ -95,7 +78,7 @@ public class OddEvenLinkedList {
 
         ob.printLL(head);
 
-        head = ob.oddEvenList(head);
+        head = ob.reverseList(head);
 
         ob.printLL(head);
     }
