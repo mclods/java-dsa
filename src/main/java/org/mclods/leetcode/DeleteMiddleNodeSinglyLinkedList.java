@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 // https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/description
-public class DeleteMiddleNodeSinglyLL {
+public class DeleteMiddleNodeSinglyLinkedList {
     private static class ListNode {
         int val;
         ListNode next;
@@ -74,7 +74,7 @@ public class DeleteMiddleNodeSinglyLL {
             return;
         }
 
-        DeleteMiddleNodeSinglyLL ob = new DeleteMiddleNodeSinglyLL();
+        DeleteMiddleNodeSinglyLinkedList ob = new DeleteMiddleNodeSinglyLinkedList();
 
         ListNode head = new ListNode(Integer.parseInt(inputs[0]));
 
