@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 // https://leetcode.com/problems/count-submatrices-with-equal-frequency-of-x-and-y/description/
+// Topic: Matrix
 public class CountSubMatricesWithEqualFrequency {
     public int numberOfSubmatrices(char[][] grid) {
         int subMatricesCount = 0, rowSize = grid.length, colSize = grid[0].length;

@@ -27,7 +27,7 @@ public class DeleteColumnsToMakeSorted2 {
 
                     // If any index is deleted then all strings needs to reevaluated again
                     // for ex ["vdy", "vei", "zvc", "zld"]
-                    i=-1;
+                    i = -1;
                 }
             }
         }

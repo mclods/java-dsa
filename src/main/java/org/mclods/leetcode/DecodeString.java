@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 
 // https://leetcode.com/problems/decode-string/description
+// Topic: Stack
 public class DecodeString {
     public String decodeString(String s) {
         int n = s.length();

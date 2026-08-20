@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 // https://leetcode.com/problems/asteroid-collision/description
+// Topic: Stack
 public class AsteroidCollision {
     public int[] asteroidCollision(int[] asteroids) {
         int n = asteroids.length;
