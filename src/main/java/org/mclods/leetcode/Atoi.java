@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 // https://leetcode.com/problems/string-to-integer-atoi/description/
+// Topic: String
 public class Atoi {
     public int myAtoi(String input) {
         int output = 0;

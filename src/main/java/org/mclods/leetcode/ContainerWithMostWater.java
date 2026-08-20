@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 // https://leetcode.com/problems/container-with-most-water/
+// Topic: Two Pointers
 public class ContainerWithMostWater {
     public int maxArea(int[] heights) {
         int i=0, j = heights.length-1, area = 0;

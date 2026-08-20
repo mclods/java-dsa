@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 // https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+// Topic: DP
 public class BestTimeToBuyAndSellStock {
     public int maxProfit(int[] prices) {
         int n = prices.length;
